@@ -38,7 +38,7 @@ const Card = () => {
         let result = [...products];
 
         if (filterQuery.trim()) {
-            const q = filterQuery.toLowerCase();
+            const q = filterQuery.trim().toLowerCase();
             result = result.filter(
                 (p) =>
                     p.title.toLowerCase().includes(q) ||
@@ -67,7 +67,7 @@ const Card = () => {
         <>
             <div className=" bg-[#f2f2f2]">
                 <div className=" flex bg-[#f2f2f2] flex-wrap justify-end py-2 relative w-[83%] m-auto ">
-                    <div className="flex text-sm gap-5  justify-between sm:justify-normal  w-full  mb-2 sm:absolute left-1 top-2 z-10">
+                    <div className="flex text-sm gap-5 justify-between sm:justify-normal w-full mb-2 sm:absolute left-1 top-2 z-10">
                         <button
                             className={`bg-white text-xs md:text-base  px-2 py-2  md:py-4   md:px-4  rounded shadow ${sortOrder === 'asc' ? 'ring-2 ring-black' : ''
                                 }`}
@@ -83,9 +83,12 @@ const Card = () => {
                             Price: High to Low
                         </button>
                     </div>
-                    <input type="text" placeholder="Search here ...." className=" rounded shadow p-3 outline-none border-none bg-white w-full  md:w-[400px]"
-                        value={filterQuery}
+                    <input
+                        type="text"
+                        placeholder="Search here ...."
+                        className="rounded shadow p-3 outline-none border-none bg-white w-full md:w-[400px] z-20"
                         onChange={handleFilter}
+                        value={filterQuery}
                     />
                 </div>
             </div>
@@ -134,4 +137,4 @@ const Card = () => {
     )
 }
 
-export default Card
+export default Card;
