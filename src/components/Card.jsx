@@ -5,6 +5,7 @@ import { useNavigate } from "react-router"
 import { addToCart, setProducts } from "../features/cart/cartSlice";
 import { toast } from 'react-toastify';
 import BagAnimation from '../assets/shopping-bag.gif';
+import { getAllProducts } from '../services/productService';
 
 const Card = () => {
     const [filterQuery, setFilterQuery] = useState("");
@@ -15,14 +16,17 @@ const Card = () => {
     const [sortOrder, setSortOrder] = useState(null);
 
     useEffect(() => {
-        if (products.length === 0) {
-            const fetchData = async () => {
-                const data = await axios.get("https://dummyjson.com/products");
-                dispatch(setProducts(data.data.products));
-            };
-            fetchData();
+        if (!products || products.length === 0) {
+            (async () => {
+                try {
+                    const data = await getAllProducts();
+                    dispatch(setProducts(data.products));
+                } catch (err) {
+                    console.error('Failed to load products:', err);
+                }
+            })();
         }
-    }, []);
+    }, [dispatch, products]);
 
     const handleAddToCart = (item) => {
         dispatch(addToCart(item));
