@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import App from './App/App';
 import Home from './components/Home';
 import ProductsDetails from './components/ProductsDetails';
 import ProductCart from './components/productCart';
@@ -12,11 +11,12 @@ import store from './store/store';
 import Login from './components/Login';
 import SignupPage from './components/Signup';
 import ErrorPage from './components/ErrorPage';
+import HomePage from './home/HomePage';
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <HomePage />,
     children: [
       {
         path: "",
